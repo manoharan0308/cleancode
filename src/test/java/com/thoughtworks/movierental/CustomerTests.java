@@ -132,16 +132,7 @@ class CustomerTest {
         customer.addRental(new Rental(new Movie("Avengers", Movie.NEW_RELEASE), 15));
 
 
-
-
-
-
         String statement = customer.htmlStatement();
-
-
-
-
-
 
         assertEquals(statement, "<h3>Rental Record for John Doe</h3>" +
 
