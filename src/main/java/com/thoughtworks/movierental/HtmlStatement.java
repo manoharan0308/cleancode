@@ -2,14 +2,15 @@ package com.thoughtworks.movierental;
 
 public class HtmlStatement {
 
-     String generateFrom(String cutomerName, Rentals rentals) {
-        String header = "<h3>Rental Record for %s</h3>";
-        String footer = "<p>Amount owed is <b>%s</b></p>" +
-                "<p>You earned <b>%d</b> frequent renter points</p>";
+     String generateFrom(String customerName, Rentals rentals) {
+        return this.htmlHeader(customerName)
+                .concat(this.htmlBody(rentals))
+                .concat(this.htmlFooter(rentals));
+    }
 
-        return String.format(header, cutomerName)
-                .concat(htmlBody(rentals))
-                .concat(String.format(footer, rentals.totalAmount(), rentals.totalFrequentRenterPoints()));
+    private String htmlHeader(String cutomerName) {
+        String header = "<h3>Rental Record for %s</h3>";
+        return String.format(header, cutomerName);
     }
 
     private String htmlBody(Rentals rentals) {
@@ -20,4 +21,11 @@ public class HtmlStatement {
         }
         return result + "</p>";
     }
+
+    private String htmlFooter(Rentals rentals) {
+        String footer = "<p>Amount owed is <b>%s</b></p>" +
+                "<p>You earned <b>%d</b> frequent renter points</p>";
+        return String.format(footer, rentals.totalAmount(), rentals.totalFrequentRenterPoints());
+    }
+
 }
