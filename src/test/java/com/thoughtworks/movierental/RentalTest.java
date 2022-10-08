@@ -34,7 +34,8 @@ class RentalTest {
         return Stream.of(
                 Arguments.of(Movie.CHILDRENS, 5, 4.5, 1),
                 Arguments.of(Movie.REGULAR, 10, 14.0, 1),
-                Arguments.of(Movie.NEW_RELEASE, 7, 21.0, 2)
+                Arguments.of(Movie.NEW_RELEASE, 7, 21.0, 2),
+                Arguments.of(Movie.BLUE_RAY, 11, 44.0, 3)
         );
     }
 
@@ -42,7 +43,8 @@ class RentalTest {
         return Stream.of(
                 Arguments.of(new ChildrenMovieType(), 5, 4.5, 1),
                 Arguments.of(new RegularMovieType(), 10, 14.0, 1),
-                Arguments.of(new NewReleaseMovieType(), 7, 21.0, 2)
+                Arguments.of(new NewReleaseMovieType(), 7, 21.0, 2),
+                Arguments.of(new BlueRayMovieType(), 11, 44.0, 3)
         );
     }
 }

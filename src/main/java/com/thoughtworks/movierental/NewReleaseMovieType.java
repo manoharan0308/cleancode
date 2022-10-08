@@ -9,4 +9,12 @@ public class NewReleaseMovieType extends MovieType {
     int getPriceCode() {
         return Movie.NEW_RELEASE;
     }
+
+    @Override
+    int frequentRenterPoints(int daysRented) {
+        if(daysRented > 1) {
+            return 2;
+        }
+        return 1;
+    }
 }

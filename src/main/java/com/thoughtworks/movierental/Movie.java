@@ -4,6 +4,7 @@ public class Movie {
     public static final int CHILDRENS = 2;
     public static final int REGULAR = 0;
     public static final int NEW_RELEASE = 1;
+    public static final int BLUE_RAY = 4;
 
     private String title;
     private MovieType movieType;
@@ -23,6 +24,10 @@ public class Movie {
         return movieType.getPriceCode();
     }
 
+    public MovieType getMovieType() {
+        return movieType;
+    }
+
     public void setPriceCode(int priceCode) {
         switch (priceCode) {
             case REGULAR:
@@ -34,6 +39,11 @@ public class Movie {
             case CHILDRENS:
                 movieType = new ChildrenMovieType();
                 break;
+            case BLUE_RAY:
+                movieType = new BlueRayMovieType();
+                break;
+            default:
+                movieType = new DefaultMovieType();
         }
     }
 

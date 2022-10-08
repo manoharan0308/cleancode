@@ -22,13 +22,6 @@ public class Rental {
     }
 
     public int frequentRenterPoints() {
-        if (isEligibleForExtraPoints()) {
-            return 2;
-        }
-        return 1;
-    }
-
-    private boolean isEligibleForExtraPoints() {
-        return movie.isNewRelease() && daysRented > 1;
+       return movie.getMovieType().frequentRenterPoints(daysRented);
     }
 }
