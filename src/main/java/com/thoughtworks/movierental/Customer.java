@@ -23,6 +23,25 @@ public class Customer {
         return header().concat(body()).concat(footer());
     }
 
+    public String htmlStatement() {
+        String header = "<h3>Rental Record for %s</h3>";
+        String footer = "<p>Amount owed is <b>%s</b></p>" +
+                "<p>You earned <b>%d</b> frequent renter points</p>";
+
+        return String.format(header, getName())
+                .concat(htmlBody())
+                .concat(String.format(footer, totalAmount(), totalFrequentRenterPoints()));
+    }
+
+    private String htmlBody() {
+        String result = "<p>";
+        String body = "%s<b>%s</b><br/>";
+        for (Rental rental : rentals) {
+            result += String.format(body, rental.getMovie().getTitle(), rental.amount());
+        }
+        return result + "</p>";
+    }
+
 
     private String body() {
         String result = "";
@@ -61,5 +80,4 @@ public class Customer {
     private String totalAmountText(double totalAmount) {
         return "Amount owed is " + totalAmount + "\n";
     }
-
 }
