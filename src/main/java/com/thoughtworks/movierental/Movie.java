@@ -6,19 +6,35 @@ public class Movie {
     public static final int NEW_RELEASE = 1;
 
     private String title;
-    private int priceCode;
+    private MovieType movieType;
 
+    @Deprecated
     public Movie(String title, int priceCode) {
         this.title = title;
-        this.priceCode = priceCode;
+        setPriceCode(priceCode);
+    }
+
+    public Movie(String title, MovieType movieType) {
+        this.title = title;
+        this.movieType = movieType;
     }
 
     public int getPriceCode() {
-        return priceCode;
+        return movieType.getPriceCode();
     }
 
-    public void setPriceCode(int arg) {
-        priceCode = arg;
+    public void setPriceCode(int priceCode) {
+        switch (priceCode) {
+            case REGULAR:
+                movieType = new RegularMovieType();
+                break;
+            case NEW_RELEASE:
+                movieType = new NewReleaseMovieType();
+                break;
+            case CHILDRENS:
+                movieType = new ChildrenMovieType();
+                break;
+        }
     }
 
     public String getTitle() {
@@ -26,26 +42,11 @@ public class Movie {
     }
 
     public boolean isNewRelease() {
-        return priceCode == NEW_RELEASE;
+        return movieType instanceof NewReleaseMovieType;
     }
 
     public double rentAmountFor(int daysRented) {
-        double amount = 0;
-        switch (priceCode) {
-            case REGULAR:
-                amount += 2;
-                if (daysRented > 2)
-                    amount += (daysRented - 2) * 1.5;
-                break;
-            case NEW_RELEASE:
-                amount += daysRented * 3;
-                break;
-            case CHILDRENS:
-                amount += 1.5;
-                if (daysRented > 3)
-                    amount += (daysRented - 3) * 1.5;
-                break;
-        }
-        return amount;
+        return movieType.amountFor(daysRented);
     }
+
 }
