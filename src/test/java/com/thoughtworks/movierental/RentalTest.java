@@ -12,7 +12,7 @@ class RentalTest {
 
     @ParameterizedTest
     @MethodSource("movieArguments")
-    void shouldReturnAmountForChildrenMovie(int movieType, int daysRented, double expectedAmount, int expectedPoints) {
+    void shouldReturnAmountAndFrequentRenterPointsForMovie(int movieType, int daysRented, double expectedAmount, int expectedPoints) {
         Movie childrenMovie = new Movie("Movie1", movieType);
         Rental rental1 = new Rental(childrenMovie, daysRented);
 
